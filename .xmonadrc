@@ -1,0 +1,13 @@
+xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+
+eval $(gnome-keyring-daemon -s)
+export GNOME_KEYRING_CONTROL
+export SSH_AUTH_SOCK
+
+/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+
+nm-applet &
+
+xfce4-power-manager
+
+trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height 20 --transparent true --tint 0x0000 &
