@@ -7,6 +7,7 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
 import System.IO
+import qualified Data.Map as M
 
 main = do
     xmproc <- spawnPipe "/usr/bin/xmobar /home/rcoh/.xmobarrc"
@@ -22,8 +23,18 @@ main = do
                     ] 
         , layoutHook = avoidStruts $ smartBorders $  layoutHook defaultConfig
         , modMask = mod4Mask     -- Rebind Mod to the Windows key
+        , keys = myKeys
         , logHook = dynamicLogWithPP xmobarPP
                 { ppOutput = hPutStrLn xmproc
                 , ppTitle = xmobarColor "green" "" . shorten 50
                 }
         }      
+
+myKeys x  = M.union (M.fromList (newKeys x)) (keys defaultConfig x)
+
+newKeys conf@(XConfig {XMonad.modMask = modm}) = [
+-- full screenshot
+  ((modm , xK_Print ), spawn "scrot screen_%Y-%m-%d-%H-%M-%S.png -d 1")
+-- focused screenshot
+ , ((modm .|. controlMask, xK_Print ), spawn "scrot window_%Y-%m-%d-%H-%M-%S.png -d 1-u") 
+ ]
