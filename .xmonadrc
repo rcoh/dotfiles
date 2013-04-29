@@ -8,6 +8,8 @@ export SSH_AUTH_SOCK
 
 nm-applet &
 
+dropbox start &
+
 xfce4-power-manager
 
 trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height 20 --transparent true --tint 0x0000 &
