@@ -26,6 +26,7 @@ main = do
         , keys = myKeys
         , focusedBorderColor = "#0000FF"
         , normalBorderColor  = "#000000"
+        , borderWidth        = 2
         , logHook = dynamicLogWithPP xmobarPP
                 { ppOutput = hPutStrLn xmproc
                 , ppTitle = xmobarColor "green" "" . shorten 50
