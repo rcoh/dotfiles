@@ -6,6 +6,7 @@ import XMonad.Layout.NoBorders
 import XMonad.Hooks.ManageHelpers
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
+import XMonad.Hooks.EwmhDesktops
 import System.IO
 import qualified Data.Map as M
 
@@ -23,6 +24,7 @@ main = do
                     ] 
         , layoutHook = avoidStruts $ smartBorders $  layoutHook defaultConfig
         , modMask = mod4Mask     -- Rebind Mod to the Windows key
+        , handleEventHook = fullscreenEventHook
         , keys = myKeys
         , focusedBorderColor = "#0000FF"
         , normalBorderColor  = "#000000"
