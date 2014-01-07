@@ -24,6 +24,8 @@ set tabpagemax=120
 
 set number
 
+set hlsearch
+
 set pastetoggle=<F2>
 filetype plugin indent on
 autocmd FileType python set omnifunc=pythoncomplete#Complete

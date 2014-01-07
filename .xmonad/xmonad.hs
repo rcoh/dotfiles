@@ -6,7 +6,7 @@ import XMonad.Layout.NoBorders
 import XMonad.Hooks.ManageHelpers
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
-import XMonad.Hooks.EwmhDesktops
+import XMonad.Layout.Fullscreen
 import System.IO
 import qualified Data.Map as M
 
@@ -22,7 +22,7 @@ main = do
                     , className =? "Vlc"     -?> doFullFloat
                     , return True -?> doF W.swapDown
                     ] 
-        , layoutHook = avoidStruts $ smartBorders $  layoutHook defaultConfig
+        , layoutHook = fullscreenFocus $ avoidStruts $ smartBorders $ layoutHook defaultConfig
         , modMask = mod4Mask     -- Rebind Mod to the Windows key
         , handleEventHook = fullscreenEventHook
         , keys = myKeys
