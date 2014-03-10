@@ -1,0 +1,11 @@
+sudo apt-get install xmonad trayer suckless-tools cabal-install
+# For volume control
+cabal install xmonad-extras
+echo "export SSH_AUTH_SOCK="$GNOME_KEYRING_CONTROL/ssh"" >> ~/.profile
+
+# Modify the session to run start-xmonad
+
+# Link spotify.sh in usr/bin as spotifyctl
+# Link spotify.py in /usr/bin/spotifyinfo
+# Link notify.py in /usr/bin/notify
+

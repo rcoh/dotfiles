@@ -1,4 +1,6 @@
 import XMonad
+import XMonad.Hooks.UrgencyHook
+import XMonad.Actions.Volume
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks (checkDock, avoidStruts)
 import qualified XMonad.StackSet as W
@@ -8,6 +10,8 @@ import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Layout.Fullscreen
 import System.IO
+import XMonad.Hooks.SetWMName
+import XMonad.Hooks.ICCCMFocus
 import qualified Data.Map as M
 
 main = do
@@ -24,12 +28,15 @@ main = do
                     ] 
         , layoutHook = fullscreenFocus $ avoidStruts $ smartBorders $ layoutHook defaultConfig
         , modMask = mod4Mask     -- Rebind Mod to the Windows key
+        -- Rename so intellij doesn't die
+        , startupHook = setWMName "LG3D"
         , handleEventHook = fullscreenEventHook
         , keys = myKeys
         , focusedBorderColor = "#0000FF"
         , normalBorderColor  = "#000000"
         , borderWidth        = 2
-        , logHook = dynamicLogWithPP xmobarPP
+        -- takeTopFocus is for intellij
+        , logHook = takeTopFocus <+> dynamicLogWithPP xmobarPP
                 { ppOutput = hPutStrLn xmproc
                 , ppTitle = xmobarColor "green" "" . shorten 50
                 }
@@ -38,8 +45,12 @@ main = do
 myKeys x  = M.union (M.fromList (newKeys x)) (keys defaultConfig x)
 
 newKeys conf@(XConfig {XMonad.modMask = modm}) = [
--- full screenshot
-  ((modm , xK_Print ), spawn "scrot screen_%Y-%m-%d-%H-%M-%S.png -d 1")
 -- focused screenshot
- , ((modm .|. controlMask, xK_Print ), spawn "scrot window_%Y-%m-%d-%H-%M-%S.png -d 1-u") 
+   ((modm .|. controlMask, xK_p ), spawn "shutter -s") 
+ , ((modm .|. controlMask, xK_l), spawn "spotifyctl pause && slock")
+ , ((0, xK_F5), spawn "spotifyctl playpause")
+ , ((0, xK_F6), lowerVolume 4 >> return ())
+ , ((0, xK_F7), raiseVolume 4 >> return ())
+ , ((0, xK_F8), spawn "spotifyctl next")
+ , ((modm, xK_BackSpace), focusUrgent)
  ]

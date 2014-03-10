@@ -12,7 +12,7 @@ call vundle#rc()
 " required! 
 Bundle 'gmarik/vundle'
 
-colorscheme darkblue
+colorscheme delek
 
 set autoindent
 set expandtab
