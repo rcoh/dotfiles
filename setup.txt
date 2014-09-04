@@ -1,7 +1,7 @@
 sudo apt-get install xmonad trayer suckless-tools cabal-install
 # For volume control
 cabal install xmonad-extras
-echo "export SSH_AUTH_SOCK="$GNOME_KEYRING_CONTROL/ssh"" >> ~/.profile
+echo 'export SSH_AUTH_SOCK="$GNOME_KEYRING_CONTROL/ssh"' >> ~/.profile
 
 # Modify the session to run start-xmonad
 
