@@ -32,8 +32,10 @@ main = do
         , startupHook = setWMName "LG3D"
         , handleEventHook = fullscreenEventHook
         , keys = myKeys
-        , focusedBorderColor = "#0000FF"
-        , normalBorderColor  = "#000000"
+        -- Nice blue
+        , focusedBorderColor = "#204aFF"
+        -- Nice gray
+        , normalBorderColor  = "#2e3436"
         , borderWidth        = 2
         -- takeTopFocus is for intellij
         , logHook = takeTopFocus <+> dynamicLogWithPP xmobarPP
@@ -45,8 +47,8 @@ main = do
 myKeys x  = M.union (M.fromList (newKeys x)) (keys defaultConfig x)
 
 newKeys conf@(XConfig {XMonad.modMask = modm}) = [
--- focused screenshot
    ((modm .|. controlMask, xK_p ), spawn "shutter -s") 
+   -- pause the music before locking
  , ((modm .|. controlMask, xK_l), spawn "spotifyctl pause && slock")
  , ((0, xK_F5), spawn "spotifyctl playpause")
  , ((0, xK_F6), lowerVolume 4 >> return ())

@@ -1,4 +1,10 @@
+# Bind capslock to escape
 xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+
+# Bind right control to middle click
+xkbset m
+xkbset exp -m
+xmodmap -e "keycode 105 = Pointer_Button2"
 
 gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh
 
@@ -10,6 +16,7 @@ dropbox start &
 
 xfce4-power-manager
 
+# Start system tray
 trayer --edge top --align right --SetDockType true --SetPartialStrut false --expand true --width 10 --height 22 --transparent true --tint 0x0000 &
 
 exec xmonad

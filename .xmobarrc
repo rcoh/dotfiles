@@ -18,6 +18,6 @@ Config { font = "xft:Bitstream Vera Sans Mono:size=10:antialias=true"
              ]
 , sepChar = "%"
 , alignSep = "}{"
-, template = "%StdinReader% | %spotify-song% [%spotify-state%] }{ %cpufreq% | %cpu% | %memory% * %swap% | %eth0% | %KSFO% | <fc=#ee9a00>%date%</fc>"
+, template = "%StdinReader% | %spotify-song% [%spotify-state%] }{ %cpufreq% | %cpu% | %memory% | %eth0% | %KSFO% | <fc=#ee9a00>%date%</fc>"
 }
 
