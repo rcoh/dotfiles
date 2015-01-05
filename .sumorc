@@ -1,0 +1,78 @@
+git config --global remote.origin.tagopt --no-tags
+git config --global push.default upstream
+
+export SUMO_HOME=$HOME/code/sumo
+alias dsh=$SUMO_HOME/ops/bin/dsh.sh
+alias stage_build=$SUMO_HOME/ops/bin/stage_build.sh
+
+export MVN_HOME=$SUMO_HOME/bin/apache-maven-3.2.3
+export MAVEN_OPTS="-Xmx4096m -Djava.awt.headless=true"
+export PATH=$MVN_HOME/bin:$PATH
+
+export JAVA_HOME=/usr/lib/jvm/java-7-oracle/
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+
+function build() {
+  if $SUMO_HOME/bin/quick-assemble.sh $@ ; then
+      notify "Sumo" "Builder" "Build succeeded: $@"
+  else
+      notify "Sumo" "Builder" "Build failed: $@"
+      return 1
+  fi
+}
+alias build=build
+
+alias fbuild='build -c && build service'
+
+function up() {
+  if $SUMO_HOME/system/bin/pre-integration-tests.sh -z 10 $@ ; then
+      notify "Sumo" "Launcher" "Sumo is running! ($@)"
+  else
+      notify "Sumo" "Launcher" "Sumo failed to launch: $@"
+      return 1
+  fi
+}
+alias up=up
+
+alias uponly='up -sn -z 0 -o'
+
+function sshup() {
+  sshfs -o idmap=user russell@russell-macbookpro-dev.local:/Volumes/encrypted ~/.sumo
+  ssh-add ~/.sumo/id_rsa
+}
+
+function sshdown() {
+  fusermount -u ~/.sumo
+}
+
+function unittest() {
+  mvn test -P zinc -T 1C -Dtest=$1
+}
+
+alias unittest=unittest
+
+function unpzip() {
+  echo "Unzipping $1 to ${1%.*}"
+  pigz -dc $1 > "${1%.*}" 
+}
+
+alias unpzip=unpzip
+
+alias down=$SUMO_HOME/system/bin/post-integration.sh
+alias logsearch='find | grep "log$" | xargs grep'
+alias logtail='find | grep "log$" | xargs tail -f'
+
+alias collstart='/home/rcoh/code/sumo/collector/bin/run.sh -u http://localhost:23660 -e russell@sumologic.com -p 1Uy28Va4AlxMhDjWh2SG1 -n hey -b json/rcoh-collector.json'
+
+alias kill-assembly='$SUMO_HOME/system/bin/killProcess.sh'
+alias push=${SUMO_HOME}/bin/push-current-branch.sh
+
+alias slack='/opt/google/chrome/google-chrome --app=https://sumologic.slack.com/messages/general/'
+alias todo='/opt/google/chrome/google-chrome --app=https://muchtodo.firebaseapp.com'
+
+alias branch="git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format='%(refname:short)'"
+
+alias pdsh="pdsh -l russell"
