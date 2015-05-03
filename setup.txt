@@ -1,16 +1,28 @@
-# For xmonad, trayer, dmenu, cabal
-sudo apt-get install xmonad trayer suckless-tools cabal-install
-
+#!/bin/bash
+sudo apt-get install xmonad trayer suckless-tools cabal-install xmobar
 # For volume control
-cabal install xmonad-extras
-echo 'export SSH_AUTH_SOCK="$GNOME_KEYRING_CONTROL/ssh"' >> ~/.profile
+cabal update
+cabal install xmonad-extras 
 
 # For SSH keyring:
 echo 'export SSH_AUTH_SOCK="$GNOME_KEYRING_CONTROL/ssh"' >> ~/.profile
 
-echo "Change the exec line in /usr/share/xsessions/xmonad.desktop to point to /home/$USER/.xmonad/start-xmonad"
-# ^^^ Manually do the above
+# Modify /usr/share/xsessions/xmonad.desktop to run /home/russell/.xmonadrc
 
-# Link spotifyinfo and spotify ctl if desired
-ln -s `pwd`/spotifyinfo /usr/bin/spotifyinfo
-ln -s `pwd`/spotifyctl /usr/bin/spotifyctl
+# Link spotify.sh in usr/bin as spotifyctl
+# Link spotify.py in /usr/bin/spotifyinfo
+# Link notify.py in /usr/bin/notify
+HERE=`pwd`
+function linkhome() {
+	ln -sf $HERE/$1 ~/$1
+}
+
+linkhome .xmonad
+linkhome .xmonadrc
+linkhome .xmobarrc
+
+# To setup mime handling
+xdg-mime default deluge.desktop x-scheme-handler/magnet
+
+# Change DE=generic to DE=gnome in /usr/bin/xdg-open
+
