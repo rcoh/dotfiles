@@ -50,11 +50,10 @@ newKeys conf@(XConfig {XMonad.modMask = modm}) = [
    ((modm .|. controlMask, xK_p ), spawn "shutter -s") 
    -- pause the music before locking
  , ((modm .|. controlMask, xK_l), spawn "spotifyctl pause && slock")
- , ((0, xK_F3), spawn "spotifyctl playpause")
+ , ((0, xK_F7), spawn "spotifyctl playpause")
    -- Normal xmonad toggle mute hits an ubuntu bug
- , ((0, xK_F4), spawn "amixer -D pulse set Master toggle" >> return ())
+ , ((0, xK_F3), spawn "amixer -D pulse set Master toggle" >> return ())
  , ((0, xK_F5), lowerVolume 4 >> return ())
  , ((0, xK_F6), raiseVolume 4 >> return ())
- , ((0, xK_F7), spawn "spotifyctl next")
- , ((modm, xK_BackSpace), focusUrgent)
+ , ((0, xK_F8), spawn "spotifyctl next")
  ]
