@@ -61,6 +61,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'SearchComplete'
 Bundle 'wincent/Command-T'
 Bundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
+Bundle 'fatih/vim-go'
 
 filetype plugin indent on
 

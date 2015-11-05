@@ -13,6 +13,7 @@ import System.IO
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.ICCCMFocus
 import qualified Data.Map as M
+import XMonad.Hooks.FadeInactive
 
 main = do
     xmproc <- spawnPipe "/usr/bin/xmobar /home/rcoh/.xmobarrc"
@@ -38,12 +39,13 @@ main = do
         , normalBorderColor  = "#2e3436"
         , borderWidth        = 2
         -- takeTopFocus is for intellij
-        , logHook = takeTopFocus <+> dynamicLogWithPP xmobarPP
+        , logHook = fadeInactive >> takeTopFocus <+> dynamicLogWithPP xmobarPP
                 { ppOutput = hPutStrLn xmproc
                 , ppTitle = xmobarColor "green" "" . shorten 50
                 }
         }      
 
+fadeInactive = fadeInactiveLogHook 0.5
 myKeys x  = M.union (M.fromList (newKeys x)) (keys defaultConfig x)
 
 newKeys conf@(XConfig {XMonad.modMask = modm}) = [

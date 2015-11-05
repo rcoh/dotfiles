@@ -1,5 +1,5 @@
 # For xmonad, trayer, dmenu, cabal
-sudo apt-get install xmonad trayer suckless-tools cabal-install
+sudo apt-get install xmonad trayer suckless-tools cabal-install xcompmgr
 
 # For volume control
 cabal install xmonad-extras

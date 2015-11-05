@@ -6,6 +6,8 @@ xkbset m
 xkbset exp -m
 xmodmap -e "keycode 105 = Pointer_Button2"
 
+xcompmgr &
+
 gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh
 
 sleep 1

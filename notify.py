@@ -128,9 +128,13 @@ else:
 
 if __name__ == "__main__":
     import sys
-    app = sys.argv[1]
-    title = sys.argv[2]
-    message = sys.argv[3]
+    if len(sys.argv) == 2:
+        init("Notifier")
+        send("ALERT!", sys.argv[1])
+    else:
+        app = sys.argv[1]
+        title = sys.argv[2]
+        message = sys.argv[3]
 
-    init(app)
-    send(title, message)
+        init(app)
+        send(title, message)
