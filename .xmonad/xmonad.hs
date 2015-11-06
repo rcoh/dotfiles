@@ -16,7 +16,7 @@ import qualified Data.Map as M
 import XMonad.Hooks.FadeInactive
 
 main = do
-    xmproc <- spawnPipe "/usr/bin/xmobar /home/rcoh/.xmobarrc"
+    xmproc <- spawnPipe "/usr/bin/xmobar /home/russell/.xmobarrc"
     xmonad $ defaultConfig
         { manageHook = composeOne
                     [ checkDock              -?> doIgnore -- equivalent to manageDocks

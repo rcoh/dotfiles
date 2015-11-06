@@ -1,6 +1,10 @@
 # For xmonad, trayer, dmenu, cabal
-sudo apt-get install xmonad trayer suckless-tools cabal-install xcompmgr
+sudo apt-get install xmonad trayer suckless-tools cabal-install xmobar xcompmgr lm-sensors zsh
 
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+
+cabal update
 # For volume control
 cabal install xmonad-extras
 echo 'export SSH_AUTH_SOCK="$GNOME_KEYRING_CONTROL/ssh"' >> ~/.profile
@@ -8,9 +12,14 @@ echo 'export SSH_AUTH_SOCK="$GNOME_KEYRING_CONTROL/ssh"' >> ~/.profile
 # For SSH keyring:
 echo 'export SSH_AUTH_SOCK="$GNOME_KEYRING_CONTROL/ssh"' >> ~/.profile
 
+ln -s `pwd`/.xmonad ~/.xmonad
+ln -s `pwd`/.xmonadrc ~/.xmonadrc
+ln -s `pwd`/.xmobarrc ~/.xmobarrc
+ln -s `pwd`/.sumorc ~/.sumorc
+
 echo "Change the exec line in /usr/share/xsessions/xmonad.desktop to point to /home/$USER/.xmonad/start-xmonad"
 # ^^^ Manually do the above
 
 # Link spotifyinfo and spotify ctl if desired
-ln -s `pwd`/spotifyinfo /usr/bin/spotifyinfo
-ln -s `pwd`/spotifyctl /usr/bin/spotifyctl
+sudo ln -s `pwd`/spotifyinfo /usr/bin/spotifyinfo
+sudo ln -s `pwd`/spotifyctl /usr/bin/spotifyctl
