@@ -5,9 +5,10 @@ export SUMO_HOME=$HOME/code/sumo
 alias dsh=$SUMO_HOME/ops/bin/dsh.sh
 alias stage_build=$SUMO_HOME/ops/bin/stage_build.sh
 
-export MVN_HOME=$SUMO_HOME/bin/apache-maven-3.2.3
+export MVN_HOME=$SUMO_HOME/bin/apache-maven-3.3.3
 export MAVEN_OPTS="-Xmx4096m -Djava.awt.headless=true"
 export PATH=$MVN_HOME/bin:$PATH
+export PATH=~/Downloads/zinc-0.3.9/bin/:$PATH
 
 export JAVA_HOME=/usr/lib/jvm/java-7-oracle/
 
@@ -100,7 +101,7 @@ alias down=$SUMO_HOME/system/bin/post-integration.sh
 alias logsearch='find | grep "log$" | xargs grep'
 alias logtail='find | grep "log$" | xargs tail -f'
 
-alias collstart='/home/rcoh/code/sumo/collector/bin/run.sh -u http://localhost:23660 -e russell@sumologic.com -p 1Uy28Va4AlxMhDjWh2SG1 -n hey -b json/rcoh-collector.json'
+alias collstart='$SUMO_HOME/collector/bin/run.sh -u http://localhost:23660 -e russell@demo.com -p 1Uy28Va4AlxMhDjWh2SG@1 -n hey -b json/rcoh-collector.json'
 
 alias push=${SUMO_HOME}/bin/push-current-branch.sh
 

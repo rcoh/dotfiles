@@ -1,4 +1,4 @@
-Config { font = "xft:Bitstream Vera Sans Mono:size=10:antialias=true" 
+Config { font = "xft:Deja Vu Sans Oblique Mono:size=11:antialias=true" 
 , bgColor = "black"
 , fgColor = "grey"
 , position = TopW L 90
@@ -15,8 +15,7 @@ Config { font = "xft:Bitstream Vera Sans Mono:size=10:antialias=true"
              , Run Com "spotifyctl" [ "playstatus" ] "spotify-state" 10
              , Run CpuFreq ["-t", "Freq:<cpu0>", "-L", "0", "-H", "2",
                             "-l", "lightblue", "-n","white", "-h", "red"] 50
-             , Run Com "sensors | grep Phys | awk '{ print $4 }'" [ ] "temp" 10
-             ]
+             , Run Com "temp" [ ] "temp" 10 ]
 , sepChar = "%"
 , alignSep = "}{"
 , template = "%StdinReader% | %spotify-song% [%spotify-state%] }{ %temp% | %cpufreq% | %cpu% | %memory% | %eth0% | %KSFO% | <fc=#ee9a00>%date%</fc>"
