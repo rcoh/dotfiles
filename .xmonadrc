@@ -10,12 +10,11 @@ sleep 1
 
 nm-applet &
 
-dropbox start &
-
 xfce4-power-manager
 
 # Start system tray
-trayer --edge top --align right --SetDockType true --SetPartialStrut false --expand true --width 10 --height 22 --transparent true --tint 0x0000 &
+trayer --edge top --align right --SetDockType true --SetPartialStrut false --expand true --width 10 --height 42 --transparent true --tint 0x0000 &
 
+feh --bg-scale ~/background.jpg 
 
 exec xmonad

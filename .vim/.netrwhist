@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/afs/athena.mit.edu/course/6/6.035/submissions/p1/grading/all-tests'
-let g:netrw_dirhist_2='/home/rcoh/6.035TA/all-tests/all-tests/semantics-hidden/illegaltrans'
-let g:netrw_dirhist_3='/home/rcoh/6.035TA/all-tests/all-tests/semantics-hidden/legaltrans'
-let g:netrw_dirhist_4='/'
-let g:netrw_dirhist_5='/afs/athena.mit.edu/course/6/6.035/submissions/p2/done-feedback/adehnert-handin/all-tests/semantics/legal'
-let g:netrw_dirhist_6='/home/rcoh/fp/fpops/filepicker.io/conf'

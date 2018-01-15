@@ -19,11 +19,10 @@ main = do
     xmproc <- spawnPipe "/home/russell/.cabal/bin/xmobar /home/russell/.xmobarrc"
     xmonad $ defaultConfig
         { manageHook = composeOne
-                    [ checkDock              -?> doIgnore -- equivalent to manageDocks
-                    , isDialog               -?> doFloat
+                    [checkDock              -?> doIgnore -- equivalent to manageDocks
+                     ,isDialog               -?> doFloat
                     , className =? "Gimp"    -?> doFloat
                     , className =? "MPlayer" -?> doFloat
-                    , className =? "HipChat" <&&> isInProperty "_NET_WM_STATE" "_NET_WM_STATE_SKIP_TASKBAR" -?> doFloat
                     , className =? "Vlc"     -?> doFullFloat
                     , return True -?> doF W.swapDown
                     ] 
@@ -36,8 +35,8 @@ main = do
         -- Nice blue
         , focusedBorderColor = "#204aFF"
         -- Nice gray
-        , normalBorderColor  = "#2e3436"
-        , borderWidth        = 2
+        , normalBorderColor  = "#000000"
+        , borderWidth        = 0
         -- takeTopFocus is for intellij
         , logHook = fadeInactive >> takeTopFocus <+> dynamicLogWithPP xmobarPP
                 { ppOutput = hPutStrLn xmproc
@@ -45,7 +44,7 @@ main = do
                 }
         }      
 
-fadeInactive = fadeInactiveLogHook 0.5
+fadeInactive = fadeInactiveLogHook 0.90
 myKeys x  = M.union (M.fromList (newKeys x)) (keys defaultConfig x)
 
 newKeys conf@(XConfig {XMonad.modMask = modm}) = [
