@@ -1,20 +1,24 @@
 # Bind caps lock to escape
 setxkbmap -layout us -option caps:escape
 
-
 xcompmgr &
 
 gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh
 
 sleep 1
 
-nm-applet &
-
-xfce4-power-manager
-
-# Start system tray
-trayer --edge top --align right --SetDockType true --SetPartialStrut false --expand true --width 10 --height 42 --transparent true --tint 0x0000 &
-
 feh --bg-scale ~/background.jpg 
+
+stalonetray \
+  --icon-gravity E \
+  --geometry 5x1-0+0 \
+  --max-geometry 5x1-0+0 \
+  --background '#000000' \
+  --skip-taskbar \
+  --icon-size 42 \
+  --kludges force_icons_size \
+  --window-strut none \
+&
+
 
 exec xmonad

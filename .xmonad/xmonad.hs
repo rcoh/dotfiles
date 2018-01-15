@@ -29,7 +29,9 @@ main = do
         , layoutHook = fullscreenFocus $ avoidStruts $ smartBorders $ layoutHook defaultConfig
         , modMask = mod4Mask     -- Rebind Mod to the Windows key
         -- Rename so intellij doesn't die
-        , startupHook = setWMName "LG3D"
+        , startupHook = do
+		setWMName "LG3D"
+		spawn "~/.xmonad/startup-hook"
         , handleEventHook = fullscreenEventHook
         , keys = myKeys
         -- Nice blue
