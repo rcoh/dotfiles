@@ -16,7 +16,7 @@ Config { font = "xft:Deja Vu Sans Oblique Mono:size=12:antialias=true"
 	     , Run BatteryP ["BAT0"]
               ["-t", "<acstatus> <timeleft> (<left>%)",
                "-L", "10", "-H", "80", "-p", "3",
-               "--", "-O", "<fc=green>Charging</fc> - ", "-i", "",
+               "--", "-O", "<fc=green>Charging</fc> ", "-i", "",
                "-L", "-15", "-H", "-5", "-o", "",
                "-l", "red", "-m", "blue", "-h", "green"]
               600
