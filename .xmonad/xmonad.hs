@@ -54,8 +54,10 @@ newKeys conf@(XConfig {XMonad.modMask = modm}) = [
    -- pause the music before locking
  , ((modm .|. controlMask, xK_l), spawn "spotifyctl pause && slock")
  , ((0, xK_F5), spawn "spotifyctl playpause")
- , ((0, xK_F6), lowerVolume 4 >> return ())
- , ((0, xK_F7), raiseVolume 4 >> return ())
- , ((0, xK_F8), spawn "spotifyctl next")
+ , ((0, xK_F2), lowerVolume 4 >> return ())
+ , ((0, xK_F3), raiseVolume 4 >> return ())
+ , ((0, xK_F6), spawn "spotifyctl next")
+ , ((0, xK_F11), spawn "xbacklight -dec 10")
+ , ((0, xK_F12), spawn "xbacklight -inc 10")
  , ((modm, xK_BackSpace), focusUrgent)
  ]

@@ -13,6 +13,7 @@ Config { font = "xft:Deja Vu Sans Oblique Mono:size=12:antialias=true"
              , Run StdinReader
              , Run Com "spotifyinfo" [ ] "spotify-song" 10
              , Run Com "spotifyctl" [ "playstatus" ] "spotify-state" 10
+             , Run Brightness ["-D", "intel_backlight"] 60
 	     , Run BatteryP ["BAT0"]
               ["-t", "<acstatus> <timeleft> (<left>%)",
                "-L", "10", "-H", "80", "-p", "3",
@@ -25,6 +26,6 @@ Config { font = "xft:Deja Vu Sans Oblique Mono:size=12:antialias=true"
              ]
 , sepChar = "%"
 , alignSep = "}{"
-, template = "%StdinReader% | %spotify-song% [%spotify-state%] }{ %battery% | %cpufreq% | %cpu% | %memory% | %wlp2s0% | %KSFO% | <fc=#ee9a00>%date%</fc>       "
+, template = "%StdinReader% | %spotify-song% [%spotify-state%] }{ %Brightness% | %battery% | %cpufreq% | %cpu% | %memory% | %wlp2s0% | %KSFO% | <fc=#ee9a00>%date%</fc>       "
 }
 
