@@ -20,5 +20,7 @@ stalonetray \
   --window-strut none \
 &
 
+batmon BAT0 &
+
 
 exec xmonad

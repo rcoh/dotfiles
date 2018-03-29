@@ -40,13 +40,15 @@ main = do
         , normalBorderColor  = "#000000"
         , borderWidth        = 0
         -- takeTopFocus is for intellij
-        , logHook = fadeInactive >> takeTopFocus <+> dynamicLogWithPP xmobarPP
+        , logHook = noFadeVlc >> takeTopFocus <+> dynamicLogWithPP xmobarPP
                 { ppOutput = hPutStrLn xmproc
                 , ppTitle = xmobarColor "green" "" . shorten 50
                 }
         }      
 
 fadeInactive = fadeInactiveLogHook 0.90
+noFadeVlc = fadeOutLogHook $ fadeIf ((isUnfocused <&&> (className =? "vlc") =? False)) 0.93 
+
 myKeys x  = M.union (M.fromList (newKeys x)) (keys defaultConfig x)
 
 newKeys conf@(XConfig {XMonad.modMask = modm}) = [
@@ -55,6 +57,7 @@ newKeys conf@(XConfig {XMonad.modMask = modm}) = [
  , ((modm .|. controlMask, xK_l), spawn "spotifyctl pause && slock")
  , ((0, 0x1008FF14), spawn "spotifyctl playpause")
  , ((0, 0x1008FF17), spawn "spotifyctl next")
+ , ((0, 0x1008FF12), toggleMute    >> return ())
  , ((0, 0x1008FF11), lowerVolume 4 >> return ())
  , ((0, 0x1008FF13), raiseVolume 4 >> return ())
  , ((0, 0x1008FF03), spawn "xbacklight -dec 10")

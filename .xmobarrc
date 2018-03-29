@@ -5,8 +5,8 @@ Config { font = "xft:Deja Vu Sans Oblique Mono:size=12:antialias=true"
 , position = TopW L 95 
 , lowerOnStart = True
 , commands = [ Run Weather "KSFO" ["-t","SFO: <tempF>F","-L","45","-H","75","--normal","green","--high","red","--low","lightblue"] 36000
-             , Run Network "wlp2s0" ["-L","0","-H","32","--normal","green","--high","red"] 10
-             , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
+             , Run Network "wlp2s0" ["-L","0","-H","32","--normal","green","--high","red", "-w", "3"] 10
+             , Run Cpu ["-L","3","-H","50","--normal","green","--high","red", "-w", "4"] 10
              , Run Memory ["-t","Mem: <usedratio>%"] 10
              , Run Swap [ ] 10
              , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
@@ -22,7 +22,7 @@ Config { font = "xft:Deja Vu Sans Oblique Mono:size=12:antialias=true"
                "-l", "red", "-m", "blue", "-h", "green"]
               600
              , Run CpuFreq ["-t", "Freq:<cpu0>", "-L", "0", "-H", "2",
-                            "-l", "lightblue", "-n","white", "-h", "red"] 50
+                            "-l", "lightblue", "-n","white", "-h", "red", "-w", "4"] 50
              ]
 , sepChar = "%"
 , alignSep = "}{"
