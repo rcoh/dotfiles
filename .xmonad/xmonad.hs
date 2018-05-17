@@ -8,7 +8,8 @@ import XMonad.Layout.NoBorders
 import XMonad.Hooks.ManageHelpers
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
-import XMonad.Layout.Fullscreen
+import XMonad.Hooks.EwmhDesktops
+import XMonad.Layout.Fullscreen as F
 import System.IO
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.ICCCMFocus
@@ -17,7 +18,7 @@ import XMonad.Hooks.FadeInactive
 
 main = do
     xmproc <- spawnPipe "/home/russell/.cabal/bin/xmobar /home/russell/.xmobarrc"
-    xmonad $ defaultConfig
+    xmonad $ ewmh defaultConfig
         { manageHook = composeOne
                     [checkDock              -?> doIgnore -- equivalent to manageDocks
                      ,isDialog               -?> doFloat
@@ -26,13 +27,13 @@ main = do
                     , className =? "Vlc"     -?> doFullFloat
                     , return True -?> doF W.swapDown
                     ] 
-        , layoutHook = fullscreenFocus $ avoidStruts $ smartBorders $ layoutHook defaultConfig
+        , layoutHook = F.fullscreenFocus $ avoidStruts $ smartBorders $ layoutHook defaultConfig
         , modMask = mod4Mask     -- Rebind Mod to the Windows key
         -- Rename so intellij doesn't die
         , startupHook = do
 		setWMName "LG3D"
 		spawn "~/.xmonad/startup-hook"
-        , handleEventHook = fullscreenEventHook
+        , handleEventHook =  F.fullscreenEventHook  <+> ewmhDesktopsEventHook
         , keys = myKeys
         -- Nice blue
         , focusedBorderColor = "#204aFF"
