@@ -47,8 +47,8 @@ main = do
                 }
         }      
 
-fadeInactive = fadeInactiveLogHook 0.90
-noFadeVlc = fadeOutLogHook $ fadeIf ((isUnfocused <&&> (className =? "vlc") =? False)) 0.93 
+--fadeInactive = fadeInactiveLogHook 0.90
+noFadeVlc = fadeOutLogHook $ fadeIf ((isUnfocused <&&> (className =? "vlc") =? False <&&> (className =? "Google-chrome") =? False)) 0.93 
 
 myKeys x  = M.union (M.fromList (newKeys x)) (keys defaultConfig x)
 
